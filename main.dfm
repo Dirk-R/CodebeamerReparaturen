@@ -35,10 +35,6 @@ object Form1: TForm1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Reparaturen'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ListView1: TListView
         Left = 0
         Top = 0
@@ -78,8 +74,10 @@ object Form1: TForm1
             Width = 200
           end
           item
+            Caption = 'Preis gesamt'
           end
           item
+            Caption = 'Gew'#228'hrleistung'
           end>
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
