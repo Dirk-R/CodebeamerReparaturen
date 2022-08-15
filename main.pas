@@ -169,25 +169,25 @@ begin
   jsArr := Eintraege as TJSONArray;
   with ListView1 do begin
    for element in jsArr do begin
-    element.TryGetValue('rückmeldung.name', ff2);
+    element.TryGetValue('rÃ¼ckmeldung.name', ff2);
     if (ComboBox1.ItemIndex = -1) or ((ComboBox1.ItemIndex <> -1) and (ff2 = ComboBox1.Items[ComboBox1.ItemIndex])) then begin
      inc(pp);
      Eintrag := Items.Add;
      Eintrag.Caption := inttostr(ListView1.Items.Count);
-     Eintrag.SubItems.Add( element.GetValue<string>('gerät.name') );
+     Eintrag.SubItems.Add( element.GetValue<string>('gerÃ¤t.name') );
      Eintrag.SubItems.Add( element.GetValue<string>('seriennummer'));
      Eintrag.SubItems.Add( element.GetValue<string>('status.name'));
      Eintrag.SubItems.Add( element.GetValue<string>('fehlerbeschreibungKunde'));
      try
       if element.TryGetValue('fehlerbeschreibungService', ff) then Eintrag.SubItems.Add( ff ) else Eintrag.SubItems.Add('');
-      if element.TryGetValue('rückmeldung.name', ff) then begin
+      if element.TryGetValue('rÃ¼ckmeldung.name', ff) then begin
        if not Rueckmeldungen.Find(ff, ol) then Rueckmeldungen.Add(ff);
       end;
 
       // test 1
 
       if element.TryGetValue('preisGesamt', ff) then Eintrag.SubItems.Add( ff ) ;
-      if element.TryGetValue('gewährleistung.name', gewaehr) then begin
+      if element.TryGetValue('gewÃ¤hrleistung.name', gewaehr) then begin
        if gewaehr = 'Ja' then
         ff := '0.0'
       end;
@@ -321,8 +321,8 @@ begin
   jsArr := Eintraege as TJSONArray;
   with ListView1 do begin
    for element in jsArr do begin
-    element.TryGetValue('rückmeldung.name', ff2);
-
+    element.TryGetValue('rÃ¼ckmeldung.name', ff2);
+    set
 
    end;
   end;
