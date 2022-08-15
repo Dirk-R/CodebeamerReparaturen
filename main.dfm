@@ -24,7 +24,6 @@ object Form1: TForm1
     Align = alBottom
     Style = csDropDownList
     TabOrder = 0
-    ExplicitTop = 253
   end
   object Panel1: TPanel
     Left = 0
@@ -42,10 +41,6 @@ object Form1: TForm1
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 1493
-      ExplicitHeight = 253
       object TabSheet1: TTabSheet
         Caption = 'Reparaturen'
         object ListView1: TListView
@@ -113,6 +108,15 @@ object Form1: TForm1
           Align = alBottom
           Caption = 'Panel1'
           TabOrder = 1
+          object Button1: TButton
+            Left = 0
+            Top = 6
+            Width = 75
+            Height = 25
+            Caption = 'Button1'
+            TabOrder = 0
+            OnClick = Button1Click
+          end
         end
       end
     end
@@ -125,10 +129,6 @@ object Form1: TForm1
     Align = alClient
     Caption = 'Panel3'
     TabOrder = 2
-    ExplicitLeft = 280
-    ExplicitTop = 328
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object PageControl2: TPageControl
       Left = 1
       Top = 1
@@ -136,10 +136,6 @@ object Form1: TForm1
       Height = 306
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 808
-      ExplicitTop = 272
-      ExplicitWidth = 289
-      ExplicitHeight = 193
     end
     object TreeView1: TTreeView
       Left = 1
@@ -149,11 +145,6 @@ object Form1: TForm1
       Align = alClient
       Indent = 19
       TabOrder = 1
-      OnClick = TreeView1Click
-      ExplicitLeft = 648
-      ExplicitTop = 96
-      ExplicitWidth = 121
-      ExplicitHeight = 97
     end
   end
   object RESTRequest1: TRESTRequest

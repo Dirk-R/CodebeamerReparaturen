@@ -1,4 +1,4 @@
-unit main;
+﻿unit main;
 
 // kkkkk
 
@@ -32,6 +32,7 @@ type
     Panel3: TPanel;
     PageControl2: TPageControl;
     TreeView1: TTreeView;
+    Button1: TButton;
     procedure Timer1Timer(Sender: TObject);
     procedure FormClick(Sender: TObject);
     procedure ListView1Click(Sender: TObject);
@@ -42,6 +43,7 @@ type
     procedure ListView1InfoTip(Sender: TObject; Item: TListItem;
       var InfoTip: string);
     procedure TreeView1Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private-Deklarationen }
   public
@@ -55,6 +57,11 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+ TreeView1Click(Nil);
+end;
 
 procedure TForm1.FormClick(Sender: TObject);
 begin
@@ -247,6 +254,26 @@ begin
 
 end;
 
+function GetNodeByText
+(ATree : TTreeView; AValue:String;
+ AVisible: Boolean): TTreeNode;
+var
+ Node: TTreeNode;
+begin
+ Result := nil;
+ if ATree.Items.Count = 0 then Exit;
+ Node := ATree.Items[0];
+ while Node<>nil do begin if UpperCase(Node.Text) = UpperCase(AValue) then begin
+ Result := Node;
+ if AVisible then
+ Result.MakeVisible;
+ Break;
+ end;
+ Node := Node.GetNext;
+ end;
+end;
+
+
 procedure TForm1.TreeView1Click(Sender: TObject);
 var
  JSonValue      : TJSonValue;
@@ -270,6 +297,7 @@ var
  gewaehr        : String;
  uu             : Integer;
  Node           : TTreeNode;
+ Node1          : TTreeNode;
 begin
  FormatSettings.DecimalSeparator := '.';
  RESTRequest1.Resource := 'query/page/1?queryString=project.id%20IN%20(19)%20AND%20tracker.id%20IN%20(130894)%20AND%20%2719.130894.status%27%20NOT%20IN%20(%27Geschlossen%27)';
@@ -321,8 +349,14 @@ begin
   jsArr := Eintraege as TJSONArray;
   with ListView1 do begin
    for element in jsArr do begin
-    //testtest
-    // testtest
+    if element.TryGetValue('rückmeldung.name', ff) then begin
+     node := GetNodeByText(TreeView1, ff, false);
+     if node <> Nil then begin
+      Node1 :=  TreeView1.Items.AddChild(node, element.GetValue<string>('gerät.name'));
+
+
+     end;
+    end;
    end;
   end;
  end;
