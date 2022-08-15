@@ -24,9 +24,14 @@ type
     HTTPBasicAuthenticator1: THTTPBasicAuthenticator;
     Timer1: TTimer;
     ComboBox1: TComboBox;
+    Panel1: TPanel;
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     ListView1: TListView;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    PageControl2: TPageControl;
+    TreeView1: TTreeView;
     procedure Timer1Timer(Sender: TObject);
     procedure FormClick(Sender: TObject);
     procedure ListView1Click(Sender: TObject);
@@ -36,6 +41,7 @@ type
     procedure ListView3Click(Sender: TObject);
     procedure ListView1InfoTip(Sender: TObject; Item: TListItem;
       var InfoTip: string);
+    procedure TreeView1Click(Sender: TObject);
   private
     { Private-Deklarationen }
   public
@@ -156,6 +162,7 @@ begin
   suche := '/query/page/'+inttostr(i)+'?queryString=project.id%20IN%20(19)%20AND%20tracker.id%20IN%20(56520)%20AND%20workItemStatus%20NOT%20IN%20(%27Closed%27)%20ORDER%20BY%20%2756520.customField[7]%27%20ASC';
   RESTRequest1.Resource := suche;
   RESTRequest1.Execute;
+  Clipboard.AsText := RESTClient1.BaseURL + suche;
   jValue:=RESTResponse1.JSONValue;
   JsonValue := TJSonObject.ParseJSONValue(jvalue.ToString);
   Eintraege := JSonValue.FindValue('trackerItems.items');
@@ -238,6 +245,60 @@ begin
    ComboBox1.Items.Add( Rueckmeldungen[i] );
   end;
 
+end;
+
+procedure TForm1.TreeView1Click(Sender: TObject);
+var
+ JSonValue      : TJSonValue;
+ jValue         : TJSONValue;
+ total          : String;
+ pp             : Integer;
+ i              : Integer;
+ Eintrag        : TListItem;
+ Eintraege      : TJsonValue;
+ jsArr          : TJsonArray;
+ jsARR2         : TJsonArray;
+ element        : TJSONValue;
+ element2       : TJSONValue;
+ pages          : Integer;
+ suche          : String;
+ ff             : String;
+ ff2            : String;
+ Gesamtpreis    : real;
+ ol             : Integer;
+ Stknotwenig    : String;
+ gewaehr        : String;
+ uu             : Integer;
+ Node           : TTreeNode;
+begin
+ FormatSettings.DecimalSeparator := '.';
+ RESTRequest1.Resource := 'query/page/1?queryString=project.id%20IN%20(19)%20AND%20tracker.id%20IN%20(130894)%20AND%20%2719.130894.status%27%20NOT%20IN%20(%27Geschlossen%27)';
+ RESTRequest1.Execute;
+ jValue:=RESTResponse1.JSONValue;
+ JsonValue := TJSonObject.ParseJSONValue(jvalue.ToString);
+ pp := JsonValue.GetValue<Integer>('trackerItems.total');
+ pages := ( pp div 25 ) + 1;
+ Eintraege := JSonValue.FindValue('trackerItems.items');
+ jsArr := Eintraege as TJSONArray;
+ Listview1.Clear;
+ for I := 1 to pages  do begin
+  suche := '/query/page/'+inttostr(i)+'?queryString=project.id%20IN%20(19)%20AND%20tracker.id%20IN%20(130894)%20AND%20%2719.130894.status%27%20NOT%20IN%20(%27Geschlossen%27)';
+  RESTRequest1.Resource := suche;
+  RESTRequest1.Execute;
+  Clipboard.AsText := RESTClient1.BaseURL + suche;
+  jValue:=RESTResponse1.JSONValue;
+  JsonValue := TJSonObject.ParseJSONValue(jvalue.ToString);
+  Eintraege := JSonValue.FindValue('trackerItems.items');
+  jsArr := Eintraege as TJSONArray;
+  with ListView1 do begin
+   for element in jsArr do begin
+    element.TryGetValue('name', ff);
+    Node := TreeView1.Items.Add(Nil, ff);
+
+
+   end;
+  end;
+ end;
 end;
 
 end.
