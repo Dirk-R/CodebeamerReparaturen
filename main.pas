@@ -298,6 +298,7 @@ var
  uu             : Integer;
  Node           : TTreeNode;
  Node1          : TTreeNode;
+ InfoString     : String;
 begin
  FormatSettings.DecimalSeparator := '.';
  RESTRequest1.Resource := 'query/page/1?queryString=project.id%20IN%20(19)%20AND%20tracker.id%20IN%20(130894)%20AND%20%2719.130894.status%27%20NOT%20IN%20(%27Geschlossen%27)';
@@ -352,7 +353,8 @@ begin
     if element.TryGetValue('rückmeldung.name', ff) then begin
      node := GetNodeByText(TreeView1, ff, false);
      if node <> Nil then begin
-      Node1 :=  TreeView1.Items.AddChild(node, element.GetValue<string>('gerät.name'));
+      InfoString := element.GetValue<string>('gerät.name');
+      Node1 :=  TreeView1.Items.AddChild(node, InfoString);
 
 
      end;
