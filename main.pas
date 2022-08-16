@@ -64,6 +64,7 @@ procedure TForm1.Button1Click(Sender: TObject);
 begin
  TreeView1Click(Nil);
  // Firrst
+ // Second
 end;
 
 procedure TForm1.FormClick(Sender: TObject);
