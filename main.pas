@@ -49,6 +49,7 @@ type
   public
     { Public-Deklarationen }
     //test
+    //test2
   end;
 
 var
