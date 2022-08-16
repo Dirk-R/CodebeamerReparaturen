@@ -14,7 +14,7 @@ uses
   IdTCPConnection, IdTCPClient, IdHTTP, WinInet , IDUri, IdServerIOHandler,
   IdSSL, IdSSLOpenSSL, IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack,  Vcl.Clipbrd,
   VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series, Vcl.ExtCtrls,
-  VCLTee.TeeProcs, VCLTee.Chart, dateutils, VirtualTrees;
+  VCLTee.TeeProcs, VCLTee.Chart, dateutils;
 
 type
   TForm1 = class(TForm)
@@ -48,6 +48,7 @@ type
     { Private-Deklarationen }
   public
     { Public-Deklarationen }
+    //test
   end;
 
 var
