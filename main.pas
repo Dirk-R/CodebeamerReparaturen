@@ -14,7 +14,7 @@ uses
   IdTCPConnection, IdTCPClient, IdHTTP, WinInet , IDUri, IdServerIOHandler,
   IdSSL, IdSSLOpenSSL, IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack,  Vcl.Clipbrd,
   VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series, Vcl.ExtCtrls,
-  VCLTee.TeeProcs, VCLTee.Chart, dateutils;
+  VCLTee.TeeProcs, VCLTee.Chart, dateutils, VirtualTrees;
 
 type
   TForm1 = class(TForm)
@@ -354,6 +354,7 @@ begin
      node := GetNodeByText(TreeView1, ff, false);
      if node <> Nil then begin
       InfoString := element.GetValue<string>('gerät.name');
+      InfoString := InfoString + '  ' + element.GetValue<string>('seriennummer');
       Node1 :=  TreeView1.Items.AddChild(node, InfoString);
 
 

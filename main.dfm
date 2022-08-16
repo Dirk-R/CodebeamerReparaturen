@@ -145,6 +145,7 @@ object Form1: TForm1
       Align = alClient
       Indent = 19
       TabOrder = 1
+      ExplicitWidth = 688
     end
   end
   object RESTRequest1: TRESTRequest
